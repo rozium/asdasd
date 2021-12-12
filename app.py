@@ -116,4 +116,5 @@ def register():
         return render_template("login.html", pesan=pesan, status="success")
     return render_template("register.html", pesan=pesan)
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
