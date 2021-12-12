@@ -39,6 +39,7 @@ def api_mhs():
         # to_dict() mengubah object firebase ke dictionary/object python
         mhs = doc.to_dict()
         mhs["id"] = doc.id
+        # pop untuk menghilangkan field password pada object mhs
         mhs.pop("password")
         # append buat memasukkan mhs ke list_mahasiswa
         list_mahasiswa.append(mhs)
@@ -115,4 +116,4 @@ def register():
         return render_template("login.html", pesan=pesan, status="success")
     return render_template("register.html", pesan=pesan)
 
-app.run(debug=True, host="0.0.0.0")
+app.run(debug=True)
