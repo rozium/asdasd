@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">Login</h3>
+
+{% if pesan != '' %}
+    <div class="alert alert-{{status}} alert-dismissible fade show" role="alert">
+        {{ pesan }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+
+<form action="/login" method="post">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Username</span>
+        <input type="text" class="form-control" name="username" required>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Password</span>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% endblock %}

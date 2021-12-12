@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+<h4>Daftar Mahasiswa</h4>
+<table class="table">
+    <tr class="bg-dark text-white">
+        <th>No</th>
+        <th>Nama</th>
+        <th>Nilai</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for m in list_mahasiswa %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td {% if m.id == session.user_id %}class="bg-warning text-dark"{% endif %}>{{ m.nama }}</td>
+        <td>{{ m.nilai }}</td>
+        <td>
+            {% if m.nilai > 75 %}
+            <b class="text-success">lulus</b>
+            {% else %}
+            <b class="text-danger">tidak lulus</b>
+            {% endif %}
+        </td>
+        <td>
+            <a href="/hapus/{{m.id}}" class="btn btn-danger">Hapus</a>
+            <button class="btn btn-primary" onclick=show_modal("{{m.id}}")>Detail</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Mahasiswa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="resp"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+<!-- library jquery untuk menggunakan ajax -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+    function show_modal(user_id) {
+        // panggil api dengan ajax
+        $.ajax("/api/mhs/detail/" + user_id, {
+            success: function (data) {
+                // ubah text elemen dengan id "resp" dari request API yg diterima
+                $("#resp").text(data);
+            }
+        })
+        // cari modal nya dengan id exampleModal
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        // tampilkan modal
+        myModal.show();
+    }
+</script>
+{% endblock %}

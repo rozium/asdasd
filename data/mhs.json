@@ -1,0 +1,14 @@
+{
+    "mahasiswa":[
+        { "nama" : "um", "nilai" : 85, "password": "123456um" },
+        { "nama" : "ahyar", "nilai" : 75, "password": "123456ahyar" },
+        { "nama" : "catur", "nilai" : 65, "password": "123456catur" },
+        { "nama" : "daus", "nilai" : 95, "password": "123456daus" },
+        { "nama" : "nila", "nilai" : 100, "password": "123456nila" }
+    ],
+    "matkul": [
+        { "mtkul" : "mtk", "hari" : "senin" },
+        { "mtkul" : "ipa", "hari" : "selasa" },
+        { "mtkul" : "ips", "hari" : "rabu" }
+    ]
+}

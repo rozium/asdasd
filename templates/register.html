@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="mb-3">Register</h3>
+{% if pesan != '' %}
+    <div class="alert alert-{{status}}" role="alert">
+        {{ pesan }}
+    </div>
+{% endif %}
+<form action="/register" method="post">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Nama</span>
+        <input type="text" class="form-control" name="nama" required>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Nilai</span>
+        <input type="number" class="form-control" name="nilai">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Password</span>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% endblock %}
